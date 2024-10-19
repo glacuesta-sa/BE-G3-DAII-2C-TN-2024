@@ -6,7 +6,6 @@ provider:
   name: aws
   runtime: python3.10
   region: us-east-1
-  profile: aws-academy
   stage: dev
   role: arn:aws:iam::637423304975:role/LabRole
   vpc:
@@ -335,4 +334,4 @@ custom:
     useStaticCache: true
 
   scriptHooks:
-    after:deploy:finalize: 'aws lambda invoke --function-name eventify-eda-be-dev-saveWebsocketUrl --log-type Tail --profile aws-academy outfile.txt'
+    after:deploy:finalize: 'aws lambda invoke --function-name eventify-eda-be-dev-saveWebsocketUrl --log-type Tail outfile.txt'

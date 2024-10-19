@@ -5,7 +5,6 @@ from datetime import date
 client = boto3.client('events')
 
 session = boto3.Session(
-    profile_name='aws-academy',
     region_name='us-east-1' 
 )
 
