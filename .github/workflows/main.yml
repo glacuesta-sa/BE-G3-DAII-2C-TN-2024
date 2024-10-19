@@ -43,4 +43,6 @@ jobs:
 
       # Deploy
       - name: Deploy with Serverless
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         run: serverless deploy --stage dev --verbose
