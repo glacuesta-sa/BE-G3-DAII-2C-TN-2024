@@ -3,5 +3,4 @@ mangum
 pytest
 requests
 boto3
-unittest
 moto
