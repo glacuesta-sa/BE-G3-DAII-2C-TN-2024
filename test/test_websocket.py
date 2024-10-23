@@ -42,25 +42,28 @@ def mock_apigateway():
 
 
 def test_connect(setup_dynamodb):
-    # Simular el evento de conexión
-    event = {
-        'requestContext': {
-            'connectionId': 'test-connection-id'
+    with patch("api.websocket.get_conn_table") as mock_dynamodb_table:
+        mock_dynamodb_table.return_value = setup_dynamodb.Table('ConnectionsTable')
+        
+        # Simular el evento de conexión
+        event = {
+            'requestContext': {
+                'connectionId': 'test-connection-id'
+            }
         }
-    }
 
-    response = connect(event, None)
+        response = connect(event, None)
 
-    # Obtener la tabla mockeada de DynamoDB
-    table = setup_dynamodb.Table('ConnectionsTable')
+        # Obtener la tabla mockeada de DynamoDB
+        table = setup_dynamodb.Table('ConnectionsTable')
 
-    # Verificar que se llama a put_item en DynamoDB
-    item = table.get_item(Key={'connectionId': 'test-connection-id'})
-    assert 'Item' in item
+        # Verificar que se llama a put_item en DynamoDB
+        item = table.get_item(Key={'connectionId': 'test-connection-id'})
+        assert 'Item' in item
 
-    # Verificar la respuesta
-    assert response['statusCode'] == 200
-    assert json.loads(response['body']) == 'Conectado'
+        # Verificar la respuesta
+        assert response['statusCode'] == 200
+        assert json.loads(response['body']) == 'Conectado'
 
 
 def test_disconnect(setup_dynamodb):
