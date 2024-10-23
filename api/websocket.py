@@ -2,8 +2,9 @@
 import json
 import boto3
 
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('ConnectionsTable')
+def get_conn_table():
+    dynamodb = boto3.resource('dynamodb')
+    return dynamodb.Table('ConnectionsTable')
 
 def connect(event, context):
 
@@ -11,6 +12,7 @@ def connect(event, context):
     print(f"Conectado client id: {connection_id}")
 
     # Guardar el ConnectionId en DynamoDB
+    table = get_conn_table()
     table.put_item(
         Item={
             'connectionId': connection_id
@@ -28,6 +30,7 @@ def disconnect(event, context):
     print(f"Desconectado client id: {connection_id}")
 
     # Eliminar el ConnectionId de DynamoDB cuando el cliente se desconecta
+    table = get_conn_table()
     table.delete_item(
         Key={
             'connectionId': connection_id

@@ -2,3 +2,5 @@ node_modules/
 cdk-test/
 .serverless/
 outfile.txt
+test/__pycache__/*
+api/__pycache__/*

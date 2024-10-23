@@ -1,10 +1,14 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from boto3.dynamodb.conditions import Key, Attr
 from datetime import datetime
 from mangum import Mangum
 from typing import Optional
 import boto3
+
+from fastapi.openapi.utils import get_openapi
+from fastapi.openapi.docs import get_swagger_ui_html
 
 app = FastAPI()
 
@@ -17,9 +21,9 @@ app.add_middleware(
     allow_headers=["*"],  # Permitir todos los encabezados
 )
 
-# Inicializar el cliente DynamoDB
-dynamodb = boto3.resource('dynamodb')
-history_table = dynamodb.Table('EventsHistory')
+def get_dynamodb_table():
+    dynamodb = boto3.resource('dynamodb')
+    return dynamodb.Table('EventsHistory')
 
 @app.get("/v1/events/history")
 def get_event_history(
@@ -55,7 +59,9 @@ def get_event_history(
                         filter_expression = Key('timestamp').lte(end_datetime.isoformat())
                 except ValueError:
                     raise HTTPException(status_code=400, detail="Formato de fecha inválido para end_date")
-
+                
+        history_table = get_dynamodb_table()
+        
         # Escanear la tabla de eventos con filtro de fechas si existe
         if filter_expression:
             response = history_table.scan(
@@ -71,7 +77,14 @@ def get_event_history(
             reverse_order = True if sort_order == "desc" else False
             items = sorted(items, key=lambda x: x.get(sort_by, ""), reverse=reverse_order)
 
-        return {"ok": True, "message": "success", "data": {"events": items}}
+        return JSONResponse(
+            content={"ok": True, "message": "success", "data": {"events": items}},
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
     
     except Exception as e:
         print(f"Error al obtener el historico de eventos: {e}")
@@ -79,8 +92,40 @@ def get_event_history(
     
 @app.get("/v1/operations/types")
 def get_operation_types():
-        # TODO: pendiente de definicion de PO   
-        return {"ok": True, "message": "success", "data": {"operation-types": ["venta", "reventa"]}}
+    # TODO: pendiente de definicion de PO
+    return JSONResponse(
+        content={"ok": True, "message": "success", "data": {"operationTypes": ["venta", "reventa"]}},
+        headers={
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*", 
+            "Access-Control-Allow-Headers": "*", 
+        }
+    )
+    
+# Docs
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Eventify - EDA API Rest",
+        version="1.0.0",
+        description="EDA API REST",
+        routes=app.routes,
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+@app.get("/openapi.json", include_in_schema=False)
+def get_open_api_endpoint():
+    return custom_openapi()
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(
+        openapi_url="/dev/openapi.json",
+        title="Swagger UI",
+    )
+
 
 # adaptar la rest API a Lambda
 handler = Mangum(app)

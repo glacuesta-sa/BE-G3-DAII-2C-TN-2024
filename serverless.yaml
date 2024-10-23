@@ -38,16 +38,16 @@ provider:
 package:
   patterns:
     - '!**'
-    - 'api/app.py'
+    - 'api/rest.py'
     - 'api/websocket.py'
+    - 'api/events.py'
     - 'requirements.txt'
-    - 'handler.py'
-    - 'save_url.py'
+    - 'utils/save_url.py'
 
 functions:
   testHandler:
     name: TestHandlerLambdaFunction 
-    handler: handler.lambda_handler
+    handler: api.events.lambda_handler
     package:
       individually: true
 
@@ -70,35 +70,33 @@ functions:
           route: $default
 
   restApi:
-    handler: api.app.handler
+    handler: api.rest.handler
     #package:
     #  individually: true
     #  patterns:
     #      - '!**'
-    #      - 'api/app.py'
+    #      - 'api/rest.py'
     #      - 'requirements.txt'
     events:
       - http:
           path: /v1/events/history
           method: get
-          cors:
-            origins:
-              - "*"
-            headers:
-              - "*"
-            allowCredentials: true
+          cors: true
       - http:
           path: /v1/operations/types
           method: get
-          cors:
-            origins:
-              - "*"
-            headers:
-              - "*"
-            allowCredentials: true
+          cors: true
+      - http:
+          path: /docs
+          method: get
+          cors: true
+      - http:
+          path: /openapi.json
+          method: get
+          cors: true
 
   saveWebsocketUrl:
-    handler: save_url.lambda_handler
+    handler: utils.save_url.lambda_handler
     package:
       individually: true
     timeout: 60
