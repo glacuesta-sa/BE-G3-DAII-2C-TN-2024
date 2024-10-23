@@ -3,7 +3,7 @@ name: Deploy EDA with Serverless Framework
 on:
   push:
     branches:
-      - main
+      - glacuestamain
 
 jobs:
   deploy:
