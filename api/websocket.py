@@ -3,7 +3,7 @@ import json
 import boto3
 
 def get_conn_table():
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     return dynamodb.Table('ConnectionsTable')
 
 def connect(event, context):

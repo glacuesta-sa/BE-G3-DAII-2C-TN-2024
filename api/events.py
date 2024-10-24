@@ -9,7 +9,7 @@ def get_websocket_url():
     response = ssm.get_parameter(Name='/eventify-eda-be/websocket-url', WithDecryption=True)
     return response['Parameter']['Value']
 
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table('ConnectionsTable')
 history_table = dynamodb.Table('EventsHistory')
 

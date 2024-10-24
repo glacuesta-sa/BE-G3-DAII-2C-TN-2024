@@ -22,7 +22,7 @@ app.add_middleware(
 )
 
 def get_dynamodb_table():
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     return dynamodb.Table('EventsHistory')
 
 @app.get("/v1/events/history")
