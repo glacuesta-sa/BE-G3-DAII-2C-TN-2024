@@ -14,18 +14,37 @@ Utilizamos Serverless Framework para automatizar el deployent al sandbox de AWS 
 - Node JS y NPM (v21.1.0+ https://nodejs.org/en/download/package-manager)
 - Python 3.10+ (https://www.python.org/downloads/)
 
+
+## SSL
+Paso 1: crear certificado en cuenta de aws (wildcard para "*.deliver.ar")
+Requiere de Certificado, crear uno en el sandbox / cuenta de aws primero. debe ser para *.deliver.ar.
+
+Paso 2: validar certificado
+Crear CNAME de validation record en Route 53 (cuenta de pablo)
+
+Paso 2.1: run serverless create_domain
+
+paso 3: continuar con el readme ejecutar serverless deploy, etc...
+
+paso 4: copiar urls y crear los routeos en la cuenta de pablo en route 53.
+
+
 - Modificar numero de cuenta de sandbox en serverless.yaml, actualizar todos los lugares donde diga "637423304975" por el numero de tu cuenta de AWS del sandbox: 
 ![alt text](docs/image.png)
 
 Instalar:
 ```bash 
-npm install serverless
+npm install serverless --save-dev
 ```
 ```bash 
-npm install serverless-python-requirements
+npm install serverless-python-requirements --save-dev
 ```
 ```bash 
-npm install serverless-scriptable-plugin
+npm install serverless-scriptable-plugin --save-dev
+```
+
+```bash 
+npm install serverless-domain-manager --save-dev
 ```
 
 # Configurar CLI

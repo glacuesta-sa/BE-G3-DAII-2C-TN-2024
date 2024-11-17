@@ -321,15 +321,44 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
 
+    # ApiGatewayBasePathMapping:
+    #   Type: AWS::ApiGateway::BasePathMapping
+    #   Properties:
+    #     DomainName: deliver.ar
+    #     RestApiId:
+    #       Ref: ApiGatewayRestApi
+
 plugins:
   - serverless-python-requirements
   - serverless-scriptable-plugin
+  - serverless-domain-manager
 
 custom:
   pythonRequirements:
     dockerizePip: non-linux
     useDownloadCache: true
     useStaticCache: true
+
+  customDomain:
+    rest:
+      domainName: edaapi.deliver.ar
+      stage: dev
+      basePath: ''
+      certificateName: '*.deliver.ar'
+      createRoute53Record: false
+      endpointType: REGIONAL
+      securityPolicy: tls_1_2
+      apiType: rest
+
+    websocket:
+      domainName: edaws.deliver.ar
+      stage: dev
+      basePath: ''
+      certificateName: '*.deliver.ar'
+      createRoute53Record: false
+      endpointType: REGIONAL
+      securityPolicy: tls_1_2
+      apiType: websocket
 
   scriptHooks:
     after:deploy:finalize: 'aws lambda invoke --function-name eventify-eda-be-dev-saveWebsocketUrl --log-type Tail outfile.txt'
