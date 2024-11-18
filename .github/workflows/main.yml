@@ -29,6 +29,9 @@ jobs:
       - name: Install Serverless Framework scriptable-plugin
         run: npm install -g serverless-scriptable-plugin
 
+      - name: Install Serverless Framework scriptable-plugin
+        run: npm install -g serverless-domain-manager
+
       - name: Install dependencies
         run: npm install
       
@@ -53,11 +56,11 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          #aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1        
 
       # Deploy
       - name: Deploy with Serverless
         env:
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-        run: serverless deploy --debug
+        run: serverless deploy

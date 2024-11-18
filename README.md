@@ -29,7 +29,7 @@ paso 3: continuar con el readme ejecutar serverless deploy, etc...
 paso 4: copiar urls y crear los routeos en la cuenta de pablo en route 53.
 
 
-- Modificar numero de cuenta de sandbox en serverless.yaml, actualizar todos los lugares donde diga "637423304975" por el numero de tu cuenta de AWS del sandbox: 
+- Modificar numero de cuenta de sandbox en serverless.yaml, actualizar todos los lugares donde diga "442042507897" por el numero de tu cuenta de AWS del sandbox: 
 ![alt text](docs/image.png)
 
 Instalar:
