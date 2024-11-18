@@ -7,7 +7,7 @@ provider:
   runtime: python3.10
   region: us-east-1
   stage: dev
-  role: arn:aws:iam::637423304975:role/LabRole
+  role: arn:aws:iam::442042507897:role/LabRole
   vpc:
     securityGroupIds:
       - Ref: PublicSecurityGroup
@@ -32,7 +32,7 @@ provider:
       Action:
         - events:PutEvents
       Resource:
-        - arn:aws:events:us-east-1:637423304975:event-bus/default
+        - arn:aws:events:us-east-1:442042507897:event-bus/default
 
 # Incluir solo estos archivos, necesario para reducir el tamano del zip
 package:

@@ -15,7 +15,7 @@ def send_test_event():
     response = client.put_events(
         Entries=[
             {
-                'EventBusName': 'arn:aws:events:us-east-1:637423304975:event-bus/default',
+                'EventBusName': 'arn:aws:events:us-east-1:442042507897:event-bus/default',
                 'Source': 'myapp',
                 'DetailType': 'test',
                 'Detail': json.dumps({
