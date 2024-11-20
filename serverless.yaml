@@ -122,11 +122,11 @@ functions:
   #     individually: true
   #   timeout: 60
 
-  ArtistTopicHandler:
+  ArtistTopic:
     name: ArtistTopicLambdaFunction
     handler: api.events.artist_topic_handler
 
-  RecitalTopicHandler:
+  RecitalTopic:
     name: RecitalTopicLambdaFunction
     handler: api.events.recital_topic_handler
 
