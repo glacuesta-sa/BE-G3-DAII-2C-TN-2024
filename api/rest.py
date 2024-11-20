@@ -72,10 +72,23 @@ def get_event_history(
     end_date: Optional[str] = Query(
         None, description="Fecha de fin en formato YYYY-MM-DD"
     ),
+    page: Optional[int] = Query(
+        default=1, ge=1, description="Número de página (1 para la primera página)"
+    ),
+    page_size: Optional[int] = Query(
+        default=50, ge=1, le=100, description="Cantidad de eventos por página"
+    ),
 ):
     try:
         # Filtrar por fechas si se proveen
         filter_expression = None
+        
+        # Validar parámetros de página
+        if page < 1:
+            raise HTTPException(
+                status_code=400,
+                detail="El número de página debe ser mayor o igual a 1",
+            )
 
         # Filtrar por operación si se proporciona
         if operation:
@@ -112,14 +125,13 @@ def get_event_history(
 
         history_table = get_dynamodb_table()
 
-        # Escanear la tabla de eventos con filtro de fechas si existe
+       # Escanear la tabla con los filtros
+        scan_kwargs = {}
         if filter_expression:
-            response = history_table.scan(FilterExpression=filter_expression)
-        else:
-            response = history_table.scan()
+            scan_kwargs["FilterExpression"] = filter_expression
 
-        items = response.get("Items", [])
-
+        response = history_table.scan(**scan_kwargs)
+        
         # Ordenar los resultados si se solicita
         if sort_by:
             reverse_order = True if sort_order == "desc" else False
@@ -127,8 +139,34 @@ def get_event_history(
                 items, key=lambda x: x.get(sort_by, ""), reverse=reverse_order
             )
 
+        # paginado
+        total_items = len(items)
+        total_pages = (total_items + page_size - 1) // page_size  # redondeo hacia arriba
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+
+        if start_index >= total_items:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No hay resultados para la página {page}.",
+            )
+
+        paginated_items = items[start_index:end_index]
+
         return JSONResponse(
-            content={"ok": True, "message": "success", "data": {"events": items}},
+            content={
+                "ok": True,
+                "message": "success",
+                "data": {
+                    "events": paginated_items,
+                    "pagination": {
+                        "current_page": page,
+                        "total_pages": total_pages,
+                        "page_size": page_size,
+                        "total_items": total_items,
+                    },
+                },
+            },
             headers={
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
