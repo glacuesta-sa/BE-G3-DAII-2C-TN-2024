@@ -311,18 +311,66 @@ resources:
     EventBusPolicy:
       Type: AWS::Events::EventBusPolicy
       Properties:
-        StatementId: "AllowEventsFromOtherSandboxes"
+        StatementId: "AllowEventsFromOtherSandboxes1"
         EventBusName: "default"
         Action: "events:PutEvents"
-        Principal:
-          - "747661705570"
-          - "637423304975"
-          - "842961581719"
-          - "314146339911"
-          - "185610718112"
-          - "996851032909"
-          - "201596100553"
-          - "416160473082"
+        Principal: "747661705570"
+
+    EventBusPolicy2:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes2"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "637423304975"
+
+    EventBusPolicy3:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes3"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "842961581719"
+
+    EventBusPolicy4:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes4"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "314146339911"
+
+    EventBusPolicy4:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes5"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "185610718112"
+
+    EventBusPolicy5:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes6"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "996851032909"
+
+    EventBusPolicy6:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes7"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "201596100553"
+
+    EventBusPolicy7:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes8"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "416160473082"
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
