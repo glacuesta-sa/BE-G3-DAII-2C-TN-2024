@@ -340,7 +340,7 @@ resources:
         Action: "events:PutEvents"
         Principal: "314146339911"
 
-    EventBusPolicy4:
+    EventBusPolicy5:
       Type: AWS::Events::EventBusPolicy
       Properties:
         StatementId: "AllowEventsFromOtherSandboxes5"
@@ -348,7 +348,7 @@ resources:
         Action: "events:PutEvents"
         Principal: "185610718112"
 
-    EventBusPolicy5:
+    EventBusPolicy6:
       Type: AWS::Events::EventBusPolicy
       Properties:
         StatementId: "AllowEventsFromOtherSandboxes6"
@@ -356,7 +356,7 @@ resources:
         Action: "events:PutEvents"
         Principal: "996851032909"
 
-    EventBusPolicy6:
+    EventBusPolicy7:
       Type: AWS::Events::EventBusPolicy
       Properties:
         StatementId: "AllowEventsFromOtherSandboxes7"
@@ -364,7 +364,7 @@ resources:
         Action: "events:PutEvents"
         Principal: "201596100553"
 
-    EventBusPolicy7:
+    EventBusPolicy8:
       Type: AWS::Events::EventBusPolicy
       Properties:
         StatementId: "AllowEventsFromOtherSandboxes8"
