@@ -314,7 +314,15 @@ resources:
         StatementId: "AllowEventsFromOtherSandboxes"
         EventBusName: "default"
         Action: "events:PutEvents"
-        Principal: "747661705570"
+        Principal:
+          - "747661705570"
+          - "637423304975"
+          - "842961581719"
+          - "314146339911"
+          - "185610718112"
+          - "996851032909"
+          - "201596100553"
+          - "416160473082"
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
