@@ -90,17 +90,47 @@ def lambda_handler(event, context):
     }
 
 
-def artist_profile_handler(event, context):
+def artist_topic_handler(event, context):
     try:
         print(f"Evento recibido: {json.dumps(event)}")
         detail = event.get('detail', {})
 
         artist_topic_arn = "arn:aws:sns:us-east-1:442042507897:artist-topic"
+        
+        subject = detail.get('subject', 'Operación de Artista')
 
         response = sns_client.publish(
             TopicArn=artist_topic_arn,
             Message=json.dumps(detail), 
-            Subject="Perfil de artista creado"
+            Subject=subject
+        )
+
+        print(f"Mensaje enviado a SNS: {response}")
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Mensaje enviado!')
+        }
+
+    except Exception as e:
+        print(f"Error enviando mensaje a SNS: {e}")
+        return {
+            'statusCode': 500,
+            'body': json.dumps('Error procesnado evento.')
+        }
+        
+def recital_topic_handler(event, context):
+    try:
+        print(f"Evento recibido: {json.dumps(event)}")
+        detail = event.get('detail', {})
+
+        artist_topic_arn = "arn:aws:sns:us-east-1:442042507897:recital-topic"
+        
+        subject = detail.get('subject', 'Operación de Recital')
+
+        response = sns_client.publish(
+            TopicArn=artist_topic_arn,
+            Message=json.dumps(detail), 
+            Subject=subject
         )
 
         print(f"Mensaje enviado a SNS: {response}")

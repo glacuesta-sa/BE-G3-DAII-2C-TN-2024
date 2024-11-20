@@ -122,9 +122,14 @@ functions:
   #     individually: true
   #   timeout: 60
 
-  ArtistProfileCreation:
-    name: ArtistProfileCreationLambdaFunction
-    handler: api.events.artist_profile_handler
+  ArtistTopicHandler:
+    name: ArtistTopicLambdaFunction
+    handler: api.events.artist_topic_handler
+
+  RecitalTopicHandler:
+    name: RecitalTopicLambdaFunction
+    handler: api.events.recital_topic_handler
+
 
 resources:
   Resources:
@@ -420,36 +425,66 @@ resources:
       Properties:
         TopicName: artist-topic
 
-    ArtistProfileCreationEventBridgeRule:
+    ArtistTopicEventBridgeRule:
       Type: AWS::Events::Rule
       Properties:
-        Name: ArtistProfileCreationEventBridgeRule
+        Name: ArtistTopicEventBridgeRule
         EventPattern:
           source:
             - artist-module
           detail-type:
             - artist.profile.created
+            - artist.registration
         Targets:
           - Arn:
-              Fn::GetAtt: [ArtistProfileCreationLambdaFunction, Arn]
+              Fn::GetAtt: [ArtistTopicLambdaFunction, Arn]
             Id: TargetFunction
 
-    ArtistProfileCreationLambdaPermission:
+    ArtistTopicLambdaPermission:
       Type: AWS::Lambda::Permission
       Properties:
         FunctionName: 
-          Ref: ArtistProfileCreationLambdaFunction
+          Ref: ArtistTopicLambdaFunction
         Action: lambda:InvokeFunction
         Principal: events.amazonaws.com
         SourceArn: 
           Fn::GetAtt: 
-            - ArtistProfileCreationEventBridgeRule
+            - ArtistTopicEventBridgeRule
             - Arn
 
     RecitalTopic:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: recital-topic
+
+    RecitalTopicEventBridgeRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: RecitalTopicEventBridgeRule
+        EventPattern:
+          source:
+            - artist-module
+            - tickets-module
+          detail-type:
+            - recital.created
+            - recital.updated
+            - recital.deleted
+        Targets:
+          - Arn:
+              Fn::GetAtt: [RecitalTopicLambdaFunction, Arn]
+            Id: TargetFunction
+
+    RecitalTopicLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: RecitalTopicLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - RecitalTopicEventBridgeRule
+            - Arn
 
 plugins:
   - serverless-python-requirements
