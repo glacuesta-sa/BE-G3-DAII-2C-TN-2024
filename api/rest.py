@@ -131,6 +131,7 @@ def get_event_history(
             scan_kwargs["FilterExpression"] = filter_expression
 
         response = history_table.scan(**scan_kwargs)
+        items = response.get("Items", [])
         
         # Ordenar los resultados si se solicita
         if sort_by:
@@ -146,10 +147,7 @@ def get_event_history(
         end_index = start_index + page_size
 
         if start_index >= total_items:
-            raise HTTPException(
-                status_code=404,
-                detail=f"No hay resultados para la página {page}.",
-            )
+            items = []
 
         paginated_items = items[start_index:end_index]
 
