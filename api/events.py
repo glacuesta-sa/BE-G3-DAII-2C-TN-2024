@@ -9,6 +9,7 @@ ssm = boto3.client('ssm')
 #    response = ssm.get_parameter(Name='/eventify-eda-be/websocket-url', WithDecryption=True)
 #    return response['Parameter']['Value']
 
+sns_client = boto3.client('sns', region_name='us-east-1')
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table('ConnectionsTable')
 history_table = dynamodb.Table('EventsHistory')
@@ -87,3 +88,30 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps('Evento processado satisfactoriamente.')
     }
+
+
+def artist_profile_handler(event, context):
+    try:
+        print(f"Evento recibido: {json.dumps(event)}")
+        detail = event.get('detail', {})
+
+        artist_topic_arn = "arn:aws:sns:us-east-1:442042507897:artist-topic"
+
+        response = sns_client.publish(
+            TopicArn=artist_topic_arn,
+            Message=json.dumps(detail), 
+            Subject="Perfil de artista creado"
+        )
+
+        print(f"Mensaje enviado a SNS: {response}")
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Mensaje enviado!')
+        }
+
+    except Exception as e:
+        print(f"Error enviando mensaje a SNS: {e}")
+        return {
+            'statusCode': 500,
+            'body': json.dumps('Error procesnado evento.')
+        }

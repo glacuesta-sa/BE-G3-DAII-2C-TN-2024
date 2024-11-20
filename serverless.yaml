@@ -33,6 +33,14 @@ provider:
         - events:PutEvents
       Resource:
         - arn:aws:events:us-east-1:442042507897:event-bus/default
+    - Effect: Allow
+      Action:
+        - sns:Publish
+        - sns:Subscribe
+        - sns:Receive
+        - sns:ListTopics
+      Resource:
+        - '*'
 
 # Incluir solo estos archivos, necesario para reducir el tamano del zip
 package:
@@ -113,6 +121,18 @@ functions:
   #   package:
   #     individually: true
   #   timeout: 60
+
+  ArtistProfileCreation:
+    name: ArtistProfileCreationLambdaFunction
+    handler: api.events.artist_profile_handler
+    events:
+      - eventBridge:
+          eventBus: default
+          pattern:
+            source:
+              - artist-module
+            detail-type:
+              - artist.profile.created
 
 resources:
   Resources:
@@ -402,6 +422,30 @@ resources:
     #     DomainName: deliver.ar
     #     RestApiId:
     #       Ref: ApiGatewayRestApi
+
+    ArtistTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: artist-topic
+
+    ArtistProfileCreatedRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: ArtistProfileCreatedRule
+        EventPattern:
+          source:
+            - artist-module
+          detail-type:
+            - artist.profile.created
+        Targets:
+          - Arn:
+              Fn::GetAtt: [ArtistProfileCreationLambdaFunction, Arn]
+            Id: TargetFunction
+
+    RecitalTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: recital-topic
 
 plugins:
   - serverless-python-requirements
