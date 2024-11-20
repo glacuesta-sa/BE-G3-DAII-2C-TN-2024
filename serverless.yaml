@@ -125,14 +125,6 @@ functions:
   ArtistProfileCreation:
     name: ArtistProfileCreationLambdaFunction
     handler: api.events.artist_profile_handler
-    events:
-      - eventBridge:
-          eventBus: default
-          pattern:
-            source:
-              - artist-module
-            detail-type:
-              - artist.profile.created
 
 resources:
   Resources:
@@ -295,38 +287,7 @@ resources:
         SecurityGroupEgress:
           - IpProtocol: -1
             CidrIp: 0.0.0.0/0
-
-    AllEventsEventBridgeRule:
-      Type: AWS::Events::Rule
-      Properties:
-        Name: AllEventsEventRule 
-        EventBusName: default
-        EventPattern:
-          source: 
-            - "*"
-            - "artist-module"
-            - "tickets-module"
-            - "blockchain-module"
-            - "wallet-module"
-            - "analytics-module"
-            - "ldap-module"
-        Targets:
-          - Arn:
-              Fn::GetAtt: [AllEventsLambdaFunction, Arn]
-            Id: AllEventsEventTarget 
-
-    AllEventsLambdaPermission:
-      Type: AWS::Lambda::Permission
-      Properties:
-        FunctionName: 
-          Ref: AllEventsLambdaFunction
-        Action: lambda:InvokeFunction
-        Principal: events.amazonaws.com
-        SourceArn: 
-          Fn::GetAtt: 
-            - AllEventsEventBridgeRule
-            - Arn
-    
+  
     # Permite a otras cuentas de AWS (sandboxes) enviar eventos a este EDA
     EventBusPolicy:
       Type: AWS::Events::EventBusPolicy
@@ -423,15 +384,46 @@ resources:
     #     RestApiId:
     #       Ref: ApiGatewayRestApi
 
+    AllEventsEventBridgeRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: AllEventsEventRule 
+        EventBusName: default
+        EventPattern:
+          source: 
+            - "*"
+            - "artist-module"
+            - "tickets-module"
+            - "blockchain-module"
+            - "wallet-module"
+            - "analytics-module"
+            - "ldap-module"
+        Targets:
+          - Arn:
+              Fn::GetAtt: [AllEventsLambdaFunction, Arn]
+            Id: AllEventsEventTarget 
+
+    AllEventsLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: AllEventsLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - AllEventsEventBridgeRule
+            - Arn
+
     ArtistTopic:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: artist-topic
 
-    ArtistProfileCreatedRule:
+    ArtistProfileCreationEventBridgeRule:
       Type: AWS::Events::Rule
       Properties:
-        Name: ArtistProfileCreatedRule
+        Name: ArtistProfileCreationEventBridgeRule
         EventPattern:
           source:
             - artist-module
@@ -441,6 +433,18 @@ resources:
           - Arn:
               Fn::GetAtt: [ArtistProfileCreationLambdaFunction, Arn]
             Id: TargetFunction
+
+    ArtistProfileCreationLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: ArtistProfileCreationLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - ArtistProfileCreationEventBridgeRule
+            - Arn
 
     RecitalTopic:
       Type: AWS::SNS::Topic
