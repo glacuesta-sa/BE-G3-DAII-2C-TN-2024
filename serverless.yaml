@@ -530,7 +530,7 @@ resources:
                 - "sns:Receive"
                 - "sns:Publish"
               Resource: 
-                - Fn::GetAtt: [ArtistTopic, Arn]
+                - !Ref ArtistTopic
 
     ArtistTopicEventBridgeRule:
       Type: AWS::Events::Rule
@@ -598,7 +598,7 @@ resources:
                 - "sns:Receive"
                 - "sns:Publish"
               Resource: 
-                - Fn::GetAtt: [RecitalTopic, Arn]
+                - !Ref RecitalTopic
 
     RecitalTopicEventBridgeRule:
       Type: AWS::Events::Rule
