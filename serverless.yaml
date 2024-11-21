@@ -374,6 +374,14 @@ resources:
         Action: "events:PutEvents"
         Principal: "654654390511"
 
+    EventBusPolicy11:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes11"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "495599758261"
+
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
       Properties:
