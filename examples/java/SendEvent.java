@@ -36,7 +36,6 @@ public class EventBridgeExample {
     private static void sendTestEvent(EventBridgeClient client) {
         String detail = """
                 {
-                    "operation": "creacion",
                     "artista": "Monolink",
                     "lugar": "Platea A",
                     "estadio": "Monumental",
@@ -45,7 +44,6 @@ public class EventBridgeExample {
                     "fecha_actualizacion": "2024-09-29"
                 }
                 """;
-                // EL CAMPO OPERATION ES OBLIGATORIO
 
         PutEventsRequestEntry entry = PutEventsRequestEntry.builder()
                 .eventBusName("arn:aws:events:us-east-1:442042507897:event-bus/default")

@@ -13,15 +13,11 @@ def send_test_event():
     response = client.put_events(
         Entries=[
             {
-                'EventBusName': 'arn:aws:events:us-east-1:442042507897:event-bus/default', # obligatorio
-                'Source': 'artist-module', # obligatorio
-                'DetailType': 'recital', # obligatorio
-                'Detail': json.dumps({
-                    "operation": "creation", # obligatorio
-                    "artista": "Monolink",
-                    "lugar": "Platea A",
-                    "estadio": "Monumental",
-                    "fecha_presentacion": "2024-09-29",
+                'EventBusName': 'arn:aws:events:us-east-1:442042507897:event-bus/default', # obligatorio (valor cte, no tocar)
+                'Source': 'artist-module', # obligatorio; el valor es un ejemplo
+                'DetailType': 'recital.created', # obligatorio; el valor es un ejemplo
+                'Detail': json.dumps({ # el detalle puede venir cualquier cosa
+                    "nombre": "Monolink",
                     "fecha_creacion": "2024-09-29",
                     "fecha_actualizacion": "2024-09-29"
                 }),

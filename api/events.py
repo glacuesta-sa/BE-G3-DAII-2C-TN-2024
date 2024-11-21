@@ -33,12 +33,7 @@ def lambda_handler(event, context):
             raise KeyError("no se recibio detail en el evento")
         
         detail = event['detail']
-        
-        if 'operation' not in detail:
-            raise KeyError("no se recibio operation en el evento")
-        
-        operation = detail.get('operation', 'unknown')
-        
+
         if 'source' not in event:
             raise KeyError("no se recibio source en el evento")
         
@@ -54,7 +49,6 @@ def lambda_handler(event, context):
         item = {
                 'eventId': event_id,
                 'timestamp': datetime.utcnow().isoformat(),
-                'operation': operation,
                 'source': source,
                 'detail-type': detail_type,
                 'detail': detail

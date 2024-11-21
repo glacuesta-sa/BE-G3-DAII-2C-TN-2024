@@ -20,11 +20,10 @@ async function sendTestEvent() {
   const params = {
     Entries: [
       {
-        EventBusName: 'arn:aws:events:us-east-1:442042507897:event-bus/default',  // campo obligatorio
-        Source: 'artist-module',  // campo obligatorio
-        DetailType: 'recital',  // campo obligatorio
-        Detail: JSON.stringify({
-          operation: "creation", // campo obligatorio
+        EventBusName: 'arn:aws:events:us-east-1:442042507897:event-bus/default',  // campo obligatorio (valor constante, no tocar)
+        Source: 'artist-module',  // campo obligatorio; el valor es un ejemplo nomas.
+        DetailType: 'recital',  // campo obligatorio; el valor es un ejemplo nomas.
+        Detail: JSON.stringify({ // el detail es un payload dinamico, puede venir cualquier cosa
           artista: 'Monolink',
           lugar: 'Platea A',
           estadio: 'Monumental',

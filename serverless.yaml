@@ -100,7 +100,7 @@ functions:
           method: get
           cors: true
       - http:
-          path: /v1/operations/types
+          path: /v1/detail-types
           method: get
           cors: true
       - http:
@@ -381,6 +381,54 @@ resources:
         EventBusName: "default"
         Action: "events:PutEvents"
         Principal: "495599758261"
+
+    EventBusPolicy12:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes12"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "381492170463"
+    
+    EventBusPolicy13:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes13"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "746162069331"
+
+    EventBusPolicy14:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes14"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "533267034688"
+
+    EventBusPolicy15:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes15"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "533267277817"
+
+    EventBusPolicy16:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes16"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "195739780677"
+
+    EventBusPolicy17:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes17"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "578340619573"
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table

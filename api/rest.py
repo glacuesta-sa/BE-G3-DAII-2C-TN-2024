@@ -56,8 +56,8 @@ def health_check():
 
 @app.get("/v1/events/history")
 def get_event_history(
-    operation: Optional[str] = Query(
-        None, description="Filtrar eventos por operación (ej: venta, reventa)"
+    detail_type: Optional[str] = Query(
+        None, alias="detail-type",  description="Filtrar eventos por operación (ej: artist.registration, recital.created)"
     ),
     sort_by: Optional[str] = Query(
         default="timestamp",
@@ -82,7 +82,7 @@ def get_event_history(
     try:
         # Filtrar por fechas si se proveen
         filter_expression = None
-        
+
         # Validar parámetros de página
         if page < 1:
             raise HTTPException(
@@ -91,8 +91,8 @@ def get_event_history(
             )
 
         # Filtrar por operación si se proporciona
-        if operation:
-            filter_expression = Attr("operation").eq(operation)
+        if detail_type:
+            filter_expression = Attr("detail-type").eq(detail_type)
 
         if start_date or end_date:
             date_format = "%Y-%m-%d"
@@ -125,14 +125,14 @@ def get_event_history(
 
         history_table = get_dynamodb_table()
 
-       # Escanear la tabla con los filtros
+        # Escanear la tabla con los filtros
         scan_kwargs = {}
         if filter_expression:
             scan_kwargs["FilterExpression"] = filter_expression
 
         response = history_table.scan(**scan_kwargs)
         items = response.get("Items", [])
-        
+
         # Ordenar los resultados si se solicita
         if sort_by:
             reverse_order = True if sort_order == "desc" else False
@@ -179,14 +179,22 @@ def get_event_history(
         )
 
 
-@app.get("/v1/operations/types")
-def get_operation_types():
+@app.get("/v1/detail-types")
+def get_detail_types():
     # TODO: pendiente de definicion de PO
     return JSONResponse(
         content={
             "ok": True,
             "message": "success",
-            "data": {"operationTypes": ["venta", "reventa"]},
+            "data": {
+                "detailTypes": [
+                    "artist.registration",
+                    "artist.profile.created",
+                    "recital.created",
+                    "recital.updated",
+                    "recital.deleted",
+                ]
+            },
         },
         headers={
             "Content-Type": "application/json",
