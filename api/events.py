@@ -66,10 +66,18 @@ def lambda_handler(event, context):
             print(f"Connection ID: {connection_id}")
             
             # Enviar un mensaje a cada cliente WebSocket usando el API Gateway Management API
-            ws_client.post_to_connection(
-                ConnectionId=connection_id,
-                Data=json.dumps(item)
-            )
+            try: 
+                ws_client.post_to_connection(
+                    ConnectionId=connection_id,
+                    Data=json.dumps(item)
+                )
+            except ws_client.exceptions.GoneException:
+                print(f"Connection ID {connection_id} no es valida. Eliminando...")
+                table.delete_item(
+                    Key={'connectionId': connection_id}
+                )
+            except Exception as e:
+                print(f"Error enviando mensaje a {connection_id}: {str(e)}")
     except Exception as e:
         err = f"Error procesando el evento: {str(e)}"
         print(err)

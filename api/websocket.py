@@ -45,30 +45,38 @@ def disconnect(event, context):
 def default(event, context):
     try:
         body = json.loads(event.get('body', '{}'))
-        message = body.get('message', 'No message found')
+        table = get_conn_table()
 
         connection_id = event['requestContext']['connectionId']
 
-        print(f'Mensaje recibido de cliente id ({connection_id}): {message}')
+        print(f'Mensaje recibido de cliente id ({connection_id}): ')
+        print(body)
 
         ws_client = boto3.client('apigatewaymanagementapi',
             endpoint_url=f"https://{event['requestContext']['domainName']}/{event['requestContext']['stage']}"
         )
 
         # enviar respuesta al cliente WebSocket
-        ws_client.post_to_connection(
+        try: 
+            ws_client.post_to_connection(
             ConnectionId=connection_id,
             Data=json.dumps({
-                'message': f"Se recibio el mensaje {message}",
+                'body': body,
                 'connectionId': connection_id
             })
         )
+        except ws_client.exceptions.GoneException:
+            print(f"Connection ID {connection_id} no es valida. Eliminando...")
+            table.delete_item(
+                Key={'connectionId': connection_id}
+            )
+        except Exception as e:
+            print(f"Error enviando mensaje a {connection_id}: {str(e)}")
 
         return {
             'statusCode': 200,
-            'body': json.dumps({
-                'message': f"Se recibio el mensaje {message}"
-            })
+            'message': "se recibio mensaje en websocket",
+            'data': json.dumps(body)
         }
 
     except Exception as e:
