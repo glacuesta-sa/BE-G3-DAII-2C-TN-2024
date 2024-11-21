@@ -5,7 +5,7 @@ import uuid
 
 ssm = boto3.client('ssm')
 
-#def get_websocket_url():
+# def get_websocket_url():
 #    response = ssm.get_parameter(Name='/eventify-eda-be/websocket-url', WithDecryption=True)
 #    return response['Parameter']['Value']
 
@@ -90,13 +90,19 @@ def artist_topic_handler(event, context):
         detail = event.get('detail', {})
 
         artist_topic_arn = "arn:aws:sns:us-east-1:442042507897:artist-topic"
-        
+
         subject = detail.get('subject', 'Operación de Artista')
 
         response = sns_client.publish(
             TopicArn=artist_topic_arn,
-            Message=json.dumps(detail), 
-            Subject=subject
+            Message=json.dumps(
+                {
+                    "source": event["source"],
+                    "detail-type": event["detail-type"],
+                    "detail": detail,
+                }
+            ),
+            Subject=subject,
         )
 
         print(f"Mensaje enviado a SNS: {response}")
@@ -111,7 +117,7 @@ def artist_topic_handler(event, context):
             'statusCode': 500,
             'body': json.dumps('Error procesnado evento.')
         }
-        
+
 def recital_topic_handler(event, context):
     try:
         print(f"Evento recibido: {json.dumps(event)}")
@@ -123,7 +129,13 @@ def recital_topic_handler(event, context):
 
         response = sns_client.publish(
             TopicArn=artist_topic_arn,
-            Message=json.dumps(detail), 
+            Message=json.dumps(
+                {
+                    "source": event["source"],
+                    "detail-type": event["detail-type"],
+                    "detail": detail,
+                }
+            ),
             Subject=subject
         )
 

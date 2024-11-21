@@ -504,6 +504,7 @@ resources:
         EventPattern:
           source:
             - artist-module
+            - wallet-module
           detail-type:
             - artist.profile.created
             - artist.registration
