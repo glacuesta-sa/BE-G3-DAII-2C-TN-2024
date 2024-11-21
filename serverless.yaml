@@ -497,6 +497,41 @@ resources:
       Properties:
         TopicName: artist-topic
 
+    ArtistTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - Ref: ArtistTopic
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                AWS:
+                  - arn:aws:iam::747661705570:root
+                  - arn:aws:iam::637423304975:root
+                  - arn:aws:iam::842961581719:root
+                  - arn:aws:iam::314146339911:root
+                  - arn:aws:iam::185610718112:root
+                  - arn:aws:iam::996851032909:root
+                  - arn:aws:iam::201596100553:root
+                  - arn:aws:iam::416160473082:root
+                  - arn:aws:iam::865820275928:root
+                  - arn:aws:iam::654654390511:root
+                  - arn:aws:iam::495599758261:root
+                  - arn:aws:iam::381492170463:root
+                  - arn:aws:iam::746162069331:root
+                  - arn:aws:iam::533267034688:root
+                  - arn:aws:iam::533267277817:root
+                  - arn:aws:iam::195739780677:root
+                  - arn:aws:iam::578340619573:root
+              Action:
+                - "sns:Subscribe"
+                - "sns:Receive"
+                - "sns:Publish"
+              Resource: 
+                - Fn::GetAtt: [ArtistTopic, Arn]
+
     ArtistTopicEventBridgeRule:
       Type: AWS::Events::Rule
       Properties:
@@ -529,6 +564,41 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: recital-topic
+
+    RecitalTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - Ref: RecitalTopic
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                AWS:
+                  - arn:aws:iam::747661705570:root
+                  - arn:aws:iam::637423304975:root
+                  - arn:aws:iam::842961581719:root
+                  - arn:aws:iam::314146339911:root
+                  - arn:aws:iam::185610718112:root
+                  - arn:aws:iam::996851032909:root
+                  - arn:aws:iam::201596100553:root
+                  - arn:aws:iam::416160473082:root
+                  - arn:aws:iam::865820275928:root
+                  - arn:aws:iam::654654390511:root
+                  - arn:aws:iam::495599758261:root
+                  - arn:aws:iam::381492170463:root
+                  - arn:aws:iam::746162069331:root
+                  - arn:aws:iam::533267034688:root
+                  - arn:aws:iam::533267277817:root
+                  - arn:aws:iam::195739780677:root
+                  - arn:aws:iam::578340619573:root
+              Action:
+                - "sns:Subscribe"
+                - "sns:Receive"
+                - "sns:Publish"
+              Resource: 
+                - Fn::GetAtt: [RecitalTopic, Arn]
 
     RecitalTopicEventBridgeRule:
       Type: AWS::Events::Rule
