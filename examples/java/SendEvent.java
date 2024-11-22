@@ -22,7 +22,7 @@ public class EventBridgeExample {
 
         // Opción 2: Usar credenciales en variables de entorno
         
-        AwsBasicCredentials awsCreds = AwsBasicCredentials.create("TU_ACCESS_KEY_ID", "TU_SECRET_ACCESS_KEY");
+        AwsBasicCredentials awsCreds = AwsBasicCredentials.create("TU_ACCESS_KEY_ID", "TU_SECRET_ACCESS_KEY", "TU_SESSION_TOKEN");
         EventBridgeClient client = EventBridgeClient.builder()
                 .region(Region.US_EAST_1)
                 .credentialsProvider(StaticCredentialsProvider.create(awsCreds))

@@ -75,7 +75,7 @@ def test_when_events_table_empty_len_zero_then_send_event_then_len_one(setup_dyn
         new_event = {
             "eventId": "1",
             "detail-type": "artist.registration",
-            "timestamp": "2024-10-14T12:34:56"
+            "timestamp": "2024-11-17T15:00:00-03:00"
         }
         table = setup_dynamodb.Table('EventsHistory')
         table.put_item(Item=new_event)

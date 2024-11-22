@@ -9,6 +9,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({
   accessKeyId: 'TU_ACCESS_KEY_ID',
   secretAccessKey: 'TU_SECRET_ACCESS_KEY',
+  sessionToken: "TU_SESSION_TOKEN",
   region: 'us-east-1',
 });
 
