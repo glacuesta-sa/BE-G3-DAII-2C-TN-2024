@@ -514,32 +514,34 @@ resources:
           Version: "2012-10-17"
           Statement:
             - Effect: Allow
-              Principal:
-                AWS:
-                  - arn:aws:iam::747661705570:role/LabRole
-                  - arn:aws:iam::637423304975:role/LabRole
-                  - arn:aws:iam::842961581719:role/LabRole
-                  - arn:aws:iam::314146339911:role/LabRole
-                  - arn:aws:iam::185610718112:role/LabRole
-                  - arn:aws:iam::996851032909:role/LabRole
-                  - arn:aws:iam::201596100553:role/LabRole
-                  - arn:aws:iam::416160473082:role/LabRole
-                  - arn:aws:iam::865820275928:role/LabRole
-                  - arn:aws:iam::654654390511:role/LabRole
-                  - arn:aws:iam::495599758261:role/LabRole
-                  - arn:aws:iam::381492170463:role/LabRole
-                  - arn:aws:iam::746162069331:role/LabRole
-                  - arn:aws:iam::533267034688:role/LabRole
-                  - arn:aws:iam::533267277817:role/LabRole
-                  - arn:aws:iam::195739780677:role/LabRole
-                  - arn:aws:iam::578340619573:role/LabRole
-                  - arn:aws:iam::536914812661:role/LabRole
+              Principal: "*"
               Action:
                 - "sns:Subscribe"
                 - "sns:Receive"
                 - "sns:Publish"
               Resource: 
                 - !Ref ArtistTopic
+              Condition:
+                StringEquals:
+                  aws:PrincipalAccount:
+                    - "747661705570"
+                    - "637423304975"
+                    - "842961581719"
+                    - "314146339911"
+                    - "185610718112"
+                    - "996851032909"
+                    - "201596100553"
+                    - "416160473082"
+                    - "865820275928"
+                    - "654654390511"
+                    - "495599758261"
+                    - "381492170463"
+                    - "746162069331"
+                    - "533267034688"
+                    - "533267277817"
+                    - "195739780677"
+                    - "578340619573"
+                    - "536914812661"
 
     ArtistTopicEventBridgeRule:
       Type: AWS::Events::Rule
@@ -583,32 +585,34 @@ resources:
           Version: "2012-10-17"
           Statement:
             - Effect: Allow
-              Principal:
-                AWS:
-                  - arn:aws:iam::747661705570:role/LabRole
-                  - arn:aws:iam::637423304975:role/LabRole
-                  - arn:aws:iam::842961581719:role/LabRole
-                  - arn:aws:iam::314146339911:role/LabRole
-                  - arn:aws:iam::185610718112:role/LabRole
-                  - arn:aws:iam::996851032909:role/LabRole
-                  - arn:aws:iam::201596100553:role/LabRole
-                  - arn:aws:iam::416160473082:role/LabRole
-                  - arn:aws:iam::865820275928:role/LabRole
-                  - arn:aws:iam::654654390511:role/LabRole
-                  - arn:aws:iam::495599758261:role/LabRole
-                  - arn:aws:iam::381492170463:role/LabRole
-                  - arn:aws:iam::746162069331:role/LabRole
-                  - arn:aws:iam::533267034688:role/LabRole
-                  - arn:aws:iam::533267277817:role/LabRole
-                  - arn:aws:iam::195739780677:role/LabRole
-                  - arn:aws:iam::578340619573:role/LabRole
-                  - arn:aws:iam::536914812661:role/LabRole
+              Principal: "*"
               Action:
                 - "sns:Subscribe"
                 - "sns:Receive"
                 - "sns:Publish"
               Resource: 
                 - !Ref RecitalTopic
+              Condition:
+                StringEquals:
+                  aws:PrincipalAccount:
+                    - "747661705570"
+                    - "637423304975"
+                    - "842961581719"
+                    - "314146339911"
+                    - "185610718112"
+                    - "996851032909"
+                    - "201596100553"
+                    - "416160473082"
+                    - "865820275928"
+                    - "654654390511"
+                    - "495599758261"
+                    - "381492170463"
+                    - "746162069331"
+                    - "533267034688"
+                    - "533267277817"
+                    - "195739780677"
+                    - "578340619573"
+                    - "536914812661"
 
     RecitalTopicEventBridgeRule:
       Type: AWS::Events::Rule
