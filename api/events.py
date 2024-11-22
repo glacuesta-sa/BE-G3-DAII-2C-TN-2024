@@ -52,7 +52,7 @@ def lambda_handler(event, context):
         event_id = str(uuid.uuid4())
         item = {
                 'eventId': event_id,
-                'timestamp': (datetime.now(datetime.timezone.utc) - timedelta(hours=3)).isoformat(),
+                'timestamp': (datetime.utcnow() - timedelta(hours=3)).isoformat(),
                 'source': source,
                 'detail-type': detail_type,
                 'detail': detail
