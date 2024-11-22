@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from boto3.dynamodb.conditions import Key, Attr
-from datetime import datetime
+from datetime import datetime, timedelta
 from mangum import Mangum
 from typing import Optional
 import boto3
@@ -105,8 +105,10 @@ def get_event_history(
             date_format = "%Y-%m-%d"
             if start_date:
                 try:
+                    # inicio del dia para la fecha de inicio start_date=2024-11-22 seria "2024-11-22T00:00:00"
                     start_datetime = datetime.strptime(start_date, date_format)
-                    filter_expression = Key("timestamp").gte(start_datetime.isoformat())
+                    start_datetime_iso = start_datetime.isoformat()
+                    filter_expression = Key("timestamp").gte(start_datetime_iso)
                 except ValueError:
                     raise HTTPException(
                         status_code=400,
@@ -115,15 +117,13 @@ def get_event_history(
 
             if end_date:
                 try:
-                    end_datetime = datetime.strptime(end_date, date_format)
+                    # final del dia para la fecha de fin end=2024-11-2 3seria "2024-11-22T23:59:59"
+                    end_datetime = datetime.strptime(end_date, date_format) + timedelta(days=1) - timedelta(seconds=1)
+                    end_datetime_iso = end_datetime.isoformat()
                     if filter_expression:
-                        filter_expression = filter_expression & Key("timestamp").lte(
-                            end_datetime.isoformat()
-                        )
+                        filter_expression = filter_expression & Key("timestamp").lte(end_datetime_iso)
                     else:
-                        filter_expression = Key("timestamp").lte(
-                            end_datetime.isoformat()
-                        )
+                        filter_expression = Key("timestamp").lte(end_datetime_iso)
                 except ValueError:
                     raise HTTPException(
                         status_code=400,
