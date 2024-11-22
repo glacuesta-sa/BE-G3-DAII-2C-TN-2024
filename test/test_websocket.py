@@ -115,7 +115,7 @@ def test_default(setup_dynamodb, mock_apigateway):
         mock_apigateway.post_to_connection.assert_called_once_with(
             ConnectionId='test-connection-id',
             Data=json.dumps({
-                'body': body,  # Aquí el cuerpo es directamente el objeto, no una cadena serializada
+                'body': body,
                 'connectionId': 'test-connection-id'
             })
         )
