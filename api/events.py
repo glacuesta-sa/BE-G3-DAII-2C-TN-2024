@@ -3,7 +3,9 @@ import boto3
 from datetime import datetime
 import uuid
 
-import pytz
+from datetime import datetime, timezone, timedelta
+
+
 
 ssm = boto3.client('ssm')
 
@@ -45,12 +47,15 @@ def lambda_handler(event, context):
             raise KeyError("no se recibio detail-type en el evento")
         
         detail_type = event.get('detail-type', 'unknown')
+
+        #  zona horaria de Argentina (UTC-3)
+        argentina_tz = timezone(timedelta(hours=-3))
         
         # Guardar evento en DynamoDB como historial
         event_id = str(uuid.uuid4())
         item = {
                 'eventId': event_id,
-                'timestamp': datetime.now(pytz.timezone('America/Argentina/Buenos_Aires')).isoformat(),
+                'timestamp': datetime.now(argentina_tz).isoformat(),
                 'source': source,
                 'detail-type': detail_type,
                 'detail': detail
