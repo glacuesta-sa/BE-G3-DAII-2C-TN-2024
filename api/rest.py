@@ -59,6 +59,9 @@ def get_event_history(
     detail_type: Optional[str] = Query(
         None, alias="detail-type",  description="Filtrar eventos por operación (ej: artist.registration, recital.created)"
     ),
+    source: Optional[str] = Query(
+        None,  description="Filtrar eventos por fuente (ej: artist-module, tickets-module)"
+    ),
     sort_by: Optional[str] = Query(
         default="timestamp",
         description="Campo por el que ordenar los eventos (ej: timestamp)",
@@ -93,6 +96,10 @@ def get_event_history(
         # Filtrar por operación si se proporciona
         if detail_type:
             filter_expression = Attr("detail-type").eq(detail_type)
+
+        # Filtrar por source
+        if source:
+            filter_expression = Attr("source").eq(source)
 
         if start_date or end_date:
             date_format = "%Y-%m-%d"
@@ -193,7 +200,15 @@ def get_detail_types():
                     "recital.created",
                     "recital.updated",
                     "recital.deleted",
-                ]
+                ],
+                "sources": [
+                    "artist-module",
+                    "wallet-module",
+                    "tickets-module",
+                    "analytics-module",
+                    "blockchain-module",
+                    "ldap-module",
+                ],
             },
         },
         headers={

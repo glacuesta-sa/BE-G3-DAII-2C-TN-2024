@@ -51,6 +51,14 @@ def test_get_detail_types():
                 "recital.created",
                 "recital.updated",
                 "recital.deleted",
+            ],
+            "sources": [
+                "artist-module",
+                "wallet-module",
+                "tickets-module",
+                "analytics-module",
+                "blockchain-module",
+                "ldap-module"
             ]
         },
     }
