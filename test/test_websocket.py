@@ -97,15 +97,16 @@ def test_default(setup_dynamodb, mock_apigateway):
         mock_dynamodb_table.return_value = setup_dynamodb.Table('ConnectionsTable')
         
         # Simular el evento de mensaje
+        body = {
+            'message': 'Hello, WebSocket!'
+        }
         event = {
             'requestContext': {
                 'connectionId': 'test-connection-id',
                 'domainName': 'example.com',
                 'stage': 'dev'
             },
-            'body': json.dumps({
-                'message': 'Hello, WebSocket!'
-            })
+            'body': json.dumps(body)
         }
 
         response = default(event, None)
@@ -114,13 +115,11 @@ def test_default(setup_dynamodb, mock_apigateway):
         mock_apigateway.post_to_connection.assert_called_once_with(
             ConnectionId='test-connection-id',
             Data=json.dumps({
-                'message': 'Se recibio el mensaje Hello, WebSocket!',
+                'body': body,  # Aquí el cuerpo es directamente el objeto, no una cadena serializada
                 'connectionId': 'test-connection-id'
             })
         )
 
         # Verificar la respuesta
         assert response['statusCode'] == 200
-        assert json.loads(response['body']) == {
-            'message': 'Se recibio el mensaje Hello, WebSocket!'
-        }
+        assert json.loads(response['body']) == body

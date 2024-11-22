@@ -76,7 +76,7 @@ def default(event, context):
         return {
             'statusCode': 200,
             'message': "se recibio mensaje en websocket",
-            'data': json.dumps(body)
+            'body': json.dumps(body)
         }
 
     except Exception as e:
