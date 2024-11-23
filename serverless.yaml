@@ -130,6 +130,14 @@ functions:
     name: RecitalTopicLambdaFunction
     handler: api.events.recital_topic_handler
 
+  TicketTopic:
+    name: TicketTopicLambdaFunction
+    handler: api.events.ticket_topic_handler
+
+  TransaccionTopic:
+    name: TransaccionTopicLambdaFunction
+    handler: api.events.transaccion_topic_handler
+
 
 resources:
   Resources:
@@ -517,8 +525,6 @@ resources:
               Principal: "*"
               Action:
                 - "sns:Subscribe"
-                - "sns:Receive"
-                - "sns:Publish"
               Resource: 
                 - !Ref ArtistTopic
               Condition:
@@ -588,8 +594,6 @@ resources:
               Principal: "*"
               Action:
                 - "sns:Subscribe"
-                - "sns:Receive"
-                - "sns:Publish"
               Resource: 
                 - !Ref RecitalTopic
               Condition:
@@ -641,6 +645,144 @@ resources:
         SourceArn: 
           Fn::GetAtt: 
             - RecitalTopicEventBridgeRule
+            - Arn
+    
+    TicketTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ticket-topic
+
+    TicketTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - Ref: TicketTopic
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal: "*"
+              Action:
+                - "sns:Subscribe"
+              Resource: 
+                - !Ref TicketTopic
+              Condition:
+                StringEquals:
+                  aws:PrincipalAccount:
+                    - "747661705570"
+                    - "637423304975"
+                    - "842961581719"
+                    - "314146339911"
+                    - "185610718112"
+                    - "996851032909"
+                    - "201596100553"
+                    - "416160473082"
+                    - "865820275928"
+                    - "654654390511"
+                    - "495599758261"
+                    - "381492170463"
+                    - "746162069331"
+                    - "533267034688"
+                    - "533267277817"
+                    - "195739780677"
+                    - "578340619573"
+                    - "536914812661"
+
+    TicketTopicEventBridgeRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: TicketTopicEventBridgeRule
+        EventPattern:
+          source:
+            - ticket-module
+            - wallet-module
+          detail-type:
+            - ticket.venta
+            - ticket.reventa
+        Targets:
+          - Arn:
+              Fn::GetAtt: [TicketTopicLambdaFunction, Arn]
+            Id: TargetFunction
+
+    TicketTopicLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: TicketTopicLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - TicketTopicEventBridgeRule
+            - Arn
+
+    TransaccionTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: transaccion-topic
+
+    TransaccionPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - Ref: TransaccionTopic
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal: "*"
+              Action:
+                - "sns:Subscribe"
+              Resource: 
+                - !Ref TransaccionTopic
+              Condition:
+                StringEquals:
+                  aws:PrincipalAccount:
+                    - "747661705570"
+                    - "637423304975"
+                    - "842961581719"
+                    - "314146339911"
+                    - "185610718112"
+                    - "996851032909"
+                    - "201596100553"
+                    - "416160473082"
+                    - "865820275928"
+                    - "654654390511"
+                    - "495599758261"
+                    - "381492170463"
+                    - "746162069331"
+                    - "533267034688"
+                    - "533267277817"
+                    - "195739780677"
+                    - "578340619573"
+                    - "536914812661"
+
+    TransaccionTopicEventBridgeRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: TransaccionTopicEventBridgeRule
+        EventPattern:
+          source:
+            - wallet-module
+            - blockchain-module
+          detail-type:
+            - transaccion.crypto
+            - transaccion.pesos
+        Targets:
+          - Arn:
+              Fn::GetAtt: [TransaccionTopicLambdaFunction, Arn]
+            Id: TargetFunction
+
+    TransaccionTopicLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: TransaccionTopicLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - TransaccionTopicEventBridgeRule
             - Arn
 
 plugins:
