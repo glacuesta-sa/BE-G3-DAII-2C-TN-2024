@@ -694,7 +694,7 @@ resources:
         Name: TicketTopicEventBridgeRule
         EventPattern:
           source:
-            - ticket-module
+            - tickets-module
             - wallet-module
           detail-type:
             - ticket.venta
