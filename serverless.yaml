@@ -138,6 +138,9 @@ functions:
     name: TransaccionTopicLambdaFunction
     handler: api.events.transaccion_topic_handler
 
+  WalletTopic:
+    name: WalletTopicLambdaFunction
+    handler: api.events.wallet_topic_handler
 
 resources:
   Resources:
