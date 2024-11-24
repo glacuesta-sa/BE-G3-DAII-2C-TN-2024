@@ -199,40 +199,6 @@ def ticket_topic_handler(event, context):
             'body': json.dumps('Error procesnado evento.')
         }
 
-def transaccion_topic_handler(event, context):
-    try:
-        print(f"Evento recibido: {json.dumps(event)}")
-        detail = event.get('detail', {})
-
-        ticket_topic_arn = "arn:aws:sns:us-east-1:442042507897:transaccion-topic"
-        
-        subject = detail.get('subject', 'Transaccion')
-
-        response = sns_client.publish(
-            TopicArn=ticket_topic_arn,
-            Message=json.dumps(
-                {
-                    "source": event["source"],
-                    "detail-type": event["detail-type"],
-                    "detail": detail,
-                }
-            ),
-            Subject=subject
-        )
-
-        print(f"Mensaje enviado a SNS: {response}")
-        return {
-            'statusCode': 200,
-            'body': json.dumps('Mensaje enviado!')
-        }
-
-    except Exception as e:
-        print(f"Error enviando mensaje a SNS: {e}")
-        return {
-            'statusCode': 500,
-            'body': json.dumps('Error procesnado evento.')
-        }
-
 def wallet_topic_handler(event, context):
     try:
         print(f"Evento recibido: {json.dumps(event)}")
