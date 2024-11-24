@@ -448,6 +448,62 @@ resources:
           EventBusName: "default"
           Action: "events:PutEvents"
           Principal: "536914812661"
+    
+    EventBusPolicy19:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes19"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "637423205166"
+
+    EventBusPolicy20:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes20"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "042934109592"
+
+    EventBusPolicy21:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes21"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "984713860769"
+
+    EventBusPolicy22:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes22"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "635632725827"
+
+    EventBusPolicy23:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes23"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "849528710182"
+
+    EventBusPolicy24:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes24"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "321719814614"
+
+    EventBusPolicy25:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes25"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "836662020520"
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
@@ -551,6 +607,13 @@ resources:
                     - "195739780677"
                     - "578340619573"
                     - "536914812661"
+                    - "637423205166"
+                    - "042934109592"
+                    - "984713860769"
+                    - "635632725827"
+                    - "849528710182"
+                    - "321719814614"
+                    - "836662020520"
 
     ArtistTopicEventBridgeRule:
       Type: AWS::Events::Rule
@@ -620,6 +683,13 @@ resources:
                     - "195739780677"
                     - "578340619573"
                     - "536914812661"
+                    - "637423205166"
+                    - "042934109592"
+                    - "984713860769"
+                    - "635632725827"
+                    - "849528710182"
+                    - "321719814614"
+                    - "836662020520"
 
     RecitalTopicEventBridgeRule:
       Type: AWS::Events::Rule
@@ -690,6 +760,13 @@ resources:
                     - "195739780677"
                     - "578340619573"
                     - "536914812661"
+                    - "637423205166"
+                    - "042934109592"
+                    - "984713860769"
+                    - "635632725827"
+                    - "849528710182"
+                    - "321719814614"
+                    - "836662020520"
 
     TicketTopicEventBridgeRule:
       Type: AWS::Events::Rule
@@ -759,6 +836,13 @@ resources:
                     - "195739780677"
                     - "578340619573"
                     - "536914812661"
+                    - "637423205166"
+                    - "042934109592"
+                    - "984713860769"
+                    - "635632725827"
+                    - "849528710182"
+                    - "321719814614"
+                    - "836662020520"
 
     WalletTopicEventBridgeRule:
       Type: AWS::Events::Rule
