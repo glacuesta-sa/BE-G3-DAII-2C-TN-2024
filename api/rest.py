@@ -207,6 +207,7 @@ def get_detail_types():
                     "wallet.payment.crypto",
                     "wallet.payment.pesos",
                     "wallet.transfer.ticket"
+                    "wallet.transfer.crypto"
                 ],
                 "sources": [
                     "artist-module",

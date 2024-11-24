@@ -775,6 +775,7 @@ resources:
             - wallet.payment.crypto
             - wallet.payment.pesos
             - wallet.transfer.ticket
+            - wallet.transfer.crypto
 
         Targets:
           - Arn:
