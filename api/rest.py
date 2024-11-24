@@ -204,8 +204,8 @@ def get_detail_types():
                     "ticket.reventa",
                     "wallet.balance"
                     "wallet.promotions",
-                    "wallet.payment.crypto"
-                    "wallet.payment.pesos"
+                    "wallet.payment.crypto",
+                    "wallet.payment.pesos",
                     "wallet.transfer.ticket"
                 ],
                 "sources": [

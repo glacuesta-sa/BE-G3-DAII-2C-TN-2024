@@ -53,10 +53,10 @@ def test_get_detail_types():
                     "recital.deleted",
                     "ticket.venta", 
                     "ticket.reventa",
-                    "wallet.balance"
+                    "wallet.balance",
                     "wallet.promotions",
-                    "wallet.payment.crypto"
-                    "wallet.payment.pesos"
+                    "wallet.payment.crypto",
+                    "wallet.payment.pesos",
                     "wallet.transfer.ticket"
             ],
             "sources": [
