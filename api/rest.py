@@ -23,6 +23,22 @@ app.add_middleware(
     allow_headers=["*"],  # Permitir todos los encabezados
 )
 
+from decimal import Decimal
+
+def decimal_to_native(obj):
+    """
+    Convierte valores de tipo Decimal a tipos nativos de Python.
+    """
+    if isinstance(obj, list):
+        return [decimal_to_native(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: decimal_to_native(v) for k, v in obj.items()}
+    elif isinstance(obj, Decimal):
+        # Convertir a int si es entero, de lo contrario a float
+        return int(obj) if obj % 1 == 0 else float(obj)
+    else:
+        return obj
+
 
 def get_dynamodb_table():
     dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
@@ -139,6 +155,7 @@ def get_event_history(
 
         response = history_table.scan(**scan_kwargs)
         items = response.get("Items", [])
+        items = decimal_to_native(items)
 
         # Ordenar los resultados si se solicita
         if sort_by:
