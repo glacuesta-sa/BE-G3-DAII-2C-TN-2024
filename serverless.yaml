@@ -765,9 +765,11 @@ resources:
           source:
             - wallet-module
             - blockchain-module
+            - tickets-module
           detail-type:
             - transaccion.crypto
             - transaccion.pesos
+            - transaccion.regalo
         Targets:
           - Arn:
               Fn::GetAtt: [TransaccionTopicLambdaFunction, Arn]
@@ -783,6 +785,76 @@ resources:
         SourceArn: 
           Fn::GetAtt: 
             - TransaccionTopicEventBridgeRule
+            - Arn
+    
+
+    WalletTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: wallet-topic
+
+    WalletPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - Ref: WalletTopic
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal: "*"
+              Action:
+                - "sns:Subscribe"
+              Resource: 
+                - !Ref WalletTopic
+              Condition:
+                StringEquals:
+                  aws:PrincipalAccount:
+                    - "747661705570"
+                    - "637423304975"
+                    - "842961581719"
+                    - "314146339911"
+                    - "185610718112"
+                    - "996851032909"
+                    - "201596100553"
+                    - "416160473082"
+                    - "865820275928"
+                    - "654654390511"
+                    - "495599758261"
+                    - "381492170463"
+                    - "746162069331"
+                    - "533267034688"
+                    - "533267277817"
+                    - "195739780677"
+                    - "578340619573"
+                    - "536914812661"
+
+    WalletTopicEventBridgeRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: WalletTopicEventBridgeRule
+        EventPattern:
+          source:
+            - wallet-module
+          detail-type:
+            - wallet.balance
+            - wallet.promotions
+
+        Targets:
+          - Arn:
+              Fn::GetAtt: [WalletTopicLambdaFunction, Arn]
+            Id: TargetFunction
+
+    WalletTopicLambdaPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: 
+          Ref: WalletTopicLambdaFunction
+        Action: lambda:InvokeFunction
+        Principal: events.amazonaws.com
+        SourceArn: 
+          Fn::GetAtt: 
+            - WalletTopicEventBridgeRule
             - Arn
 
 plugins:

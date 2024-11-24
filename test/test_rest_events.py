@@ -46,11 +46,18 @@ def test_get_detail_types():
         "message": "success",
         "data": {
             "detailTypes": [
-                "artist.registration",
-                "artist.profile.created",
-                "recital.created",
-                "recital.updated",
-                "recital.deleted",
+                    "artist.registration",
+                    "artist.profile.created",
+                    "recital.created",
+                    "recital.updated",
+                    "recital.deleted",
+                    "transaccion.crypto",
+                    "transaccion.pesos"
+                    "transaccion.regalo"
+                    "ticket.venta", 
+                    "ticket.reventa",
+                    "wallet.balance"
+                    "wallet.promotions"
             ],
             "sources": [
                 "artist-module",

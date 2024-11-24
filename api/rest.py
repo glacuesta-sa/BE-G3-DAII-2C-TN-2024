@@ -200,6 +200,13 @@ def get_detail_types():
                     "recital.created",
                     "recital.updated",
                     "recital.deleted",
+                    "transaccion.crypto",
+                    "transaccion.pesos"
+                    "transaccion.regalo"
+                    "ticket.venta", 
+                    "ticket.reventa",
+                    "wallet.balance"
+                    "wallet.promotions"
                 ],
                 "sources": [
                     "artist-module",
