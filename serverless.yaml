@@ -88,8 +88,12 @@ functions:
 
   restApi:
     handler: api.rest.handler
-    package:
-      individually: true
+    #package:
+    #  individually: true
+    #  patterns:
+    #      - '!**'
+    #      - 'api/rest.py'
+    #      - 'requirements.txt'
     events:
       - http:
           path: /v1/events/history
