@@ -88,12 +88,8 @@ functions:
 
   restApi:
     handler: api.rest.handler
-    #package:
-    #  individually: true
-    #  patterns:
-    #      - '!**'
-    #      - 'api/rest.py'
-    #      - 'requirements.txt'
+    package:
+      individually: true
     events:
       - http:
           path: /v1/events/history
@@ -125,22 +121,32 @@ functions:
   ArtistTopic:
     name: ArtistTopicLambdaFunction
     handler: api.events.artist_topic_handler
+    package:
+      individually: true
 
   RecitalTopic:
     name: RecitalTopicLambdaFunction
     handler: api.events.recital_topic_handler
+    package:
+      individually: true
 
   TicketTopic:
     name: TicketTopicLambdaFunction
     handler: api.events.ticket_topic_handler
+    package:
+      individually: true
 
   TransaccionTopic:
     name: TransaccionTopicLambdaFunction
     handler: api.events.transaccion_topic_handler
+    package:
+      individually: true
 
   WalletTopic:
     name: WalletTopicLambdaFunction
     handler: api.events.wallet_topic_handler
+    package:
+      individually: true
 
 resources:
   Resources:
