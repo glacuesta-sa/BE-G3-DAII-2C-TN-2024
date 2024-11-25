@@ -314,7 +314,7 @@ resources:
       Properties:
         PolicyName: LimitEventBridgeMessages
         Roles:
-          - arn:aws:iam::442042507897:role/LabRole
+          - "arn:aws:iam::442042507897:role/LabRole"
         PolicyDocument:
           Version: "2012-10-17"
           Statement:
