@@ -307,6 +307,24 @@ resources:
         SecurityGroupEgress:
           - IpProtocol: -1
             CidrIp: 0.0.0.0/0
+    
+    # Maximo de requests permitidas en el bus
+    EventBridgeThrottlePolicy:
+      Type: AWS::IAM::Policy
+      Properties:
+        PolicyName: LimitEventBridgeMessages
+        Roles:
+          - arn:aws:iam::442042507897:role/LabRole
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Sid: LimitEventBridgeMessages
+              Effect: Allow
+              Action: "events:PutEvents"
+              Resource: "arn:aws:events:us-east-1:442042507897:event-bus/default"
+              Condition:
+                NumericLessThanEquals:
+                  aws:RequestCount: 1
   
     # Permite a otras cuentas de AWS (sandboxes) enviar eventos a este EDA
     EventBusPolicy:
