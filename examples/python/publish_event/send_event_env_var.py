@@ -3,9 +3,9 @@ import json
 import os
 
 # Configurar credenciales usando variables de entorno
-os.environ['AWS_ACCESS_KEY_ID'] = 'AS*******ZCP'
-os.environ['AWS_SECRET_ACCESS_KEY'] = 'iA7****************2v/3Ubnv'
-os.environ['AWS_SESSION_TOKEN'] = 'IQoJ********************/Z7jrIaA6Be3w6F10L8NtLZlTrIA=='
+os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAWN2*****BMWHPE'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'M+***********JkSWxxxxxxxxxxxxxxxxxxxxx'
+os.environ['AWS_SESSION_TOKEN'] = 'M+***********JkSWxxxxxxxxxxxxxxxxxxxxx'
 os.environ['AWS_DEFAULT_REGION'] = 'us-east-1' #obligatorio
 
 client = boto3.client('events')

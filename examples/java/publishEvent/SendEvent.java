@@ -34,6 +34,7 @@ public class EventBridgeExample {
     }
 
     private static void sendTestEvent(EventBridgeClient client) {
+        // en el campo detail peude ir cualquier cosa
         String detail = """
                 {
                     "artista": "Monolink",
@@ -46,9 +47,9 @@ public class EventBridgeExample {
                 """;
 
         PutEventsRequestEntry entry = PutEventsRequestEntry.builder()
-                .eventBusName("arn:aws:events:us-east-1:442042507897:event-bus/default")
-                .source("artist-module") // obligatorio
-                .detailType("recital")  // obligatorio
+                .eventBusName("arn:aws:events:us-east-1:442042507897:event-bus/default")  // no tocar
+                .source("artist-module") // obligatorio, el valor es un ejemplo
+                .detailType("recital")  // obligatorio  el valor es un ejemplo
                 .detail(detail)
                 .build();
 
