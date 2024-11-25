@@ -393,125 +393,125 @@ resources:
         Action: "events:PutEvents"
         Principal: "654654390511"
 
-    EventBusPolicy11:
-      Type: AWS::Events::EventBusPolicy
-      Properties:
-        StatementId: "AllowEventsFromOtherSandboxes11"
-        EventBusName: "default"
-        Action: "events:PutEvents"
-        Principal: "495599758261"
+    # EventBusPolicy11:
+    #   Type: AWS::Events::EventBusPolicy
+    #   Properties:
+    #     StatementId: "AllowEventsFromOtherSandboxes11"
+    #     EventBusName: "default"
+    #     Action: "events:PutEvents"
+    #     Principal: "495599758261"
 
-    EventBusPolicy12:
-      Type: AWS::Events::EventBusPolicy
-      Properties:
-        StatementId: "AllowEventsFromOtherSandboxes12"
-        EventBusName: "default"
-        Action: "events:PutEvents"
-        Principal: "381492170463"
+    # EventBusPolicy12:
+    #   Type: AWS::Events::EventBusPolicy
+    #   Properties:
+    #     StatementId: "AllowEventsFromOtherSandboxes12"
+    #     EventBusName: "default"
+    #     Action: "events:PutEvents"
+    #     Principal: "381492170463"
     
-    EventBusPolicy13:
-      Type: AWS::Events::EventBusPolicy
-      Properties:
-        StatementId: "AllowEventsFromOtherSandboxes13"
-        EventBusName: "default"
-        Action: "events:PutEvents"
-        Principal: "746162069331"
+    # EventBusPolicy13:
+    #   Type: AWS::Events::EventBusPolicy
+    #   Properties:
+    #     StatementId: "AllowEventsFromOtherSandboxes13"
+    #     EventBusName: "default"
+    #     Action: "events:PutEvents"
+    #     Principal: "746162069331"
 
-    EventBusPolicy14:
-      Type: AWS::Events::EventBusPolicy
-      Properties:
-        StatementId: "AllowEventsFromOtherSandboxes14"
-        EventBusName: "default"
-        Action: "events:PutEvents"
-        Principal: "533267034688"
+    # EventBusPolicy14:
+    #   Type: AWS::Events::EventBusPolicy
+    #   Properties:
+    #     StatementId: "AllowEventsFromOtherSandboxes14"
+    #     EventBusName: "default"
+    #     Action: "events:PutEvents"
+    #     Principal: "533267034688"
 
-    EventBusPolicy15:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes15"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "533267277817"
+    # EventBusPolicy15:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes15"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "533267277817"
 
-    EventBusPolicy16:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes16"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "195739780677"
+    # EventBusPolicy16:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes16"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "195739780677"
 
-    EventBusPolicy17:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes17"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "578340619573"
+    # EventBusPolicy17:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes17"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "578340619573"
     
-    EventBusPolicy18:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes18"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "536914812661"
+    # EventBusPolicy18:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes18"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "536914812661"
     
-    EventBusPolicy19:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes19"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "637423205166"
+    # EventBusPolicy19:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes19"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "637423205166"
 
-    EventBusPolicy20:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes20"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "042934109592"
+    # EventBusPolicy20:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes20"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "042934109592"
 
-    EventBusPolicy21:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes21"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "984713860769"
+    # EventBusPolicy21:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes21"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "984713860769"
 
-    EventBusPolicy22:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes22"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "635632725827"
+    # EventBusPolicy22:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes22"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "635632725827"
 
-    EventBusPolicy23:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes23"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "849528710182"
+    # EventBusPolicy23:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes23"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "849528710182"
 
-    EventBusPolicy24:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes24"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "321719814614"
+    # EventBusPolicy24:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes24"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "321719814614"
 
-    EventBusPolicy25:
-        Type: AWS::Events::EventBusPolicy
-        Properties:
-          StatementId: "AllowEventsFromOtherSandboxes25"
-          EventBusName: "default"
-          Action: "events:PutEvents"
-          Principal: "836662020520"
+    # EventBusPolicy25:
+    #     Type: AWS::Events::EventBusPolicy
+    #     Properties:
+    #       StatementId: "AllowEventsFromOtherSandboxes25"
+    #       EventBusName: "default"
+    #       Action: "events:PutEvents"
+    #       Principal: "836662020520"
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
