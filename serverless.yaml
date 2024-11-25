@@ -33,36 +33,6 @@ provider:
         - events:PutEvents
       Resource:
         - arn:aws:events:us-east-1:442042507897:event-bus/default
-      Condition:
-        StringEquals:
-          aws:PrincipalAccount:
-            - "747661705570"
-            - "637423304975"
-            - "842961581719"
-            - "314146339911"
-            - "185610718112"
-            - "996851032909"
-            - "201596100553"
-            - "416160473082"
-            - "865820275928"
-            - "654654390511"
-            - "495599758261"
-            - "381492170463"
-            - "746162069331"
-            - "533267034688"
-            - "533267277817"
-            - "195739780677"
-            - "578340619573"
-            - "536914812661"
-            - "637423205166"
-            - "042934109592"
-            - "984713860769"
-            - "635632725827"
-            - "849528710182"
-            - "321719814614"
-            - "836662020520"
-        NumericLessThanEquals:
-            aws:RequestCount: 1
     - Effect: Allow
       Action:
         - sns:Publish
@@ -71,7 +41,7 @@ provider:
         - sns:ListTopics
       Resource:
         - '*'
- 
+           
 # Incluir solo estos archivos, necesario para reducir el tamano del zip
 package:
   patterns:
@@ -338,6 +308,207 @@ resources:
           - IpProtocol: -1
             CidrIp: 0.0.0.0/0
   
+    # Permite a otras cuentas de AWS (sandboxes) enviar eventos a este EDA
+    EventBusPolicy:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes1"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "747661705570"
+
+    EventBusPolicy2:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes2"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "637423304975"
+
+    EventBusPolicy3:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes3"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "842961581719"
+
+    EventBusPolicy4:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes4"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "314146339911"
+
+    EventBusPolicy5:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes5"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "185610718112"
+
+    EventBusPolicy6:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes6"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "996851032909"
+
+    EventBusPolicy7:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes7"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "201596100553"
+
+    EventBusPolicy8:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes8"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "416160473082"
+
+    EventBusPolicy9:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes9"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "865820275928"
+
+    EventBusPolicy10:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes10"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "654654390511"
+
+    EventBusPolicy11:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes11"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "495599758261"
+
+    EventBusPolicy12:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes12"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "381492170463"
+    
+    EventBusPolicy13:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes13"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "746162069331"
+
+    EventBusPolicy14:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes14"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "533267034688"
+
+    EventBusPolicy15:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes15"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "533267277817"
+
+    EventBusPolicy16:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes16"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "195739780677"
+
+    EventBusPolicy17:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes17"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "578340619573"
+    
+    EventBusPolicy18:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes18"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "536914812661"
+    
+    EventBusPolicy19:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes19"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "637423205166"
+
+    EventBusPolicy20:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes20"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "042934109592"
+
+    EventBusPolicy21:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes21"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "984713860769"
+
+    EventBusPolicy22:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes22"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "635632725827"
+
+    EventBusPolicy23:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes23"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "849528710182"
+
+    EventBusPolicy24:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes24"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "321719814614"
+
+    EventBusPolicy25:
+        Type: AWS::Events::EventBusPolicy
+        Properties:
+          StatementId: "AllowEventsFromOtherSandboxes25"
+          EventBusName: "default"
+          Action: "events:PutEvents"
+          Principal: "836662020520"
+
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -452,7 +623,6 @@ resources:
       Type: AWS::Events::Rule
       Properties:
         Name: ArtistTopicEventBridgeRule
-        EventBusName: default
         EventPattern:
           source:
             - artist-module
@@ -529,7 +699,6 @@ resources:
       Type: AWS::Events::Rule
       Properties:
         Name: RecitalTopicEventBridgeRule
-        EventBusName: default
         EventPattern:
           source:
             - artist-module
@@ -607,7 +776,6 @@ resources:
       Type: AWS::Events::Rule
       Properties:
         Name: TicketTopicEventBridgeRule
-        EventBusName: default
         EventPattern:
           source:
             - tickets-module
@@ -684,7 +852,6 @@ resources:
       Type: AWS::Events::Rule
       Properties:
         Name: WalletTopicEventBridgeRule
-        EventBusName: default
         EventPattern:
           source:
             - wallet-module
