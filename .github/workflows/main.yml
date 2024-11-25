@@ -60,13 +60,11 @@ jobs:
           aws-region: us-east-1 
     
       # Create domains
-      - name: Create Domains
+      - name: Create Domain
         env:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         run: serverless create_domain
-
+        
       # Deploy
       - name: Deploy with Serverless
         env:
