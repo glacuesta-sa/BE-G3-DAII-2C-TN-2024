@@ -471,8 +471,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "533267277817"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy16:
         Type: AWS::Events::EventBusPolicy
@@ -482,8 +482,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "195739780677"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy17:
         Type: AWS::Events::EventBusPolicy
@@ -493,8 +493,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "578340619573"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
     
     EventBusPolicy18:
         Type: AWS::Events::EventBusPolicy
@@ -504,8 +504,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "536914812661"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
     
     EventBusPolicy19:
         Type: AWS::Events::EventBusPolicy
@@ -515,8 +515,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "637423205166"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy20:
         Type: AWS::Events::EventBusPolicy
@@ -526,8 +526,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "042934109592"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy21:
         Type: AWS::Events::EventBusPolicy
@@ -537,8 +537,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "984713860769"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy22:
         Type: AWS::Events::EventBusPolicy
@@ -548,8 +548,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "635632725827"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy23:
         Type: AWS::Events::EventBusPolicy
@@ -559,8 +559,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "849528710182"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy24:
         Type: AWS::Events::EventBusPolicy
@@ -570,8 +570,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "321719814614"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     EventBusPolicy25:
         Type: AWS::Events::EventBusPolicy
@@ -581,8 +581,8 @@ resources:
           Action: "events:PutEvents"
           Principal: "836662020520"
           Condition:
-          NumericLessThanEquals:
-            aws:RequestCount: 1
+            NumericLessThanEquals:
+              aws:RequestCount: 1
 
     ConnectionsTable:
       Type: AWS::DynamoDB::Table
