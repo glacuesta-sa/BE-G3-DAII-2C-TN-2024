@@ -785,8 +785,8 @@ resources:
             - tickets-module
             - wallet-module
           detail-type:
-            - ticket.venta
-            - ticket.reventa
+            - ticket.purchase
+            - ticket.repurchase
         Targets:
           - Arn:
               Fn::GetAtt: [TicketTopicLambdaFunction, Arn]

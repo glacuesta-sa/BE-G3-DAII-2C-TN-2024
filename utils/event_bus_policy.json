@@ -1,0 +1,212 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+      "Sid": "AllowEventsFromOtherSandboxes9",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::865820275928:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes11",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::495599758261:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes10",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::654654390511:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes0",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::442042507897:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::747661705570:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes2",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::637423304975:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes3",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::842961581719:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes4",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::314146339911:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes5",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::185610718112:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes6",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::996851032909:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+        "Sid": "AllowEventsFromOtherSandboxes7",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::201596100553:root"
+        },
+        "Action": "events:PutEvents",
+        "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes8",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::416160473082:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes12",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::381492170463:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    } , {
+      "Sid": "AllowEventsFromOtherSandboxes13",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::746162069331:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes14",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::533267034688:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes15",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::533267277817:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes16",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::195739780677:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes17",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::578340619573:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes18",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::536914812661:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes19",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::637423205166:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes20",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::042934109592:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes21",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::984713860769:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes22",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::635632725827:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes23",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::849528710182:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes24",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::321719814614:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }, {
+      "Sid": "AllowEventsFromOtherSandboxes25",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::836662020520:root"
+      },
+      "Action": "events:PutEvents",
+      "Resource": "arn:aws:events:us-east-1:442042507897:event-bus/default"
+    }]
+  }
