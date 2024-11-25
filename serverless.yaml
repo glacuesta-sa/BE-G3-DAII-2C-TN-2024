@@ -30,11 +30,6 @@ provider:
         - arn:aws:dynamodb:us-east-1:*:table/EventsHistory
     - Effect: Allow
       Action:
-        - events:PutEvents
-      Resource:
-        - arn:aws:events:us-east-1:442042507897:event-bus/default
-    - Effect: Allow
-      Action:
         - sns:Publish
         - sns:Subscribe
         - sns:Receive
@@ -308,6 +303,15 @@ resources:
           - IpProtocol: -1
             CidrIp: 0.0.0.0/0
   
+    
+    EventBusPolicy0:
+      Type: AWS::Events::EventBusPolicy
+      Properties:
+        StatementId: "AllowEventsFromOtherSandboxes0"
+        EventBusName: "default"
+        Action: "events:PutEvents"
+        Principal: "442042507897"
+
     # Permite a otras cuentas de AWS (sandboxes) enviar eventos a este EDA
     EventBusPolicy:
       Type: AWS::Events::EventBusPolicy
