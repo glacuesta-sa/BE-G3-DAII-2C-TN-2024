@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from mangum import Mangum
 from typing import Optional
 import boto3
+import requests
 
 from fastapi.openapi.utils import get_openapi
 from fastapi.openapi.docs import get_swagger_ui_html
@@ -54,12 +55,21 @@ def health_check():
     # Obtener topicos de la cuenta
     response = sns_client.list_topics()
     topics = response.get("Topics", [])
-    topic_arns = [topic["TopicArn"] for topic in topics]
+
+     # Check LDAP
+    external_service_url = "https://back.intranet.deliver.ar:3001/api/v1/health"
+    ldap_status = 503  # servicice unavailable
+    try:
+        external_response = requests.get(external_service_url, timeout=5)
+        ldap_status = external_response.status_code
+    except requests.RequestException:
+        ldap_status = 503
 
     return JSONResponse(
         content={
             "ok": True,
             "message": "Service is healthy",
+            "ldapStatus": ldap_status,
             "resources": {"topics": topics},
         },
         headers={

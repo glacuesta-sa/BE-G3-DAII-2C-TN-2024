@@ -140,12 +140,6 @@ functions:
     package:
       individually: true
 
-  TransaccionTopic:
-    name: TransaccionTopicLambdaFunction
-    handler: api.events.transaccion_topic_handler
-    package:
-      individually: true
-
   WalletTopic:
     name: WalletTopicLambdaFunction
     handler: api.events.wallet_topic_handler
