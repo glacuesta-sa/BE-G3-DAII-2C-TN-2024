@@ -62,7 +62,7 @@ provider:
             - "321719814614"
             - "836662020520"
         NumericLessThanEquals:
-            aws:RequestCount: 1000
+            aws:RequestCount: 1
     - Effect: Allow
       Action:
         - sns:Publish
