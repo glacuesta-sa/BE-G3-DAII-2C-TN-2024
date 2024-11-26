@@ -229,6 +229,7 @@ def get_detail_types():
                     "recital.deleted",
                     "ticket.purchase", 
                     "ticket.repurchase",
+                    "ticket.reimburse",
                     "wallet.balance",
                     "wallet.promotions",
                     "wallet.payment.crypto",

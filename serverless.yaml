@@ -630,7 +630,9 @@ resources:
         EventPattern:
           source:
             - artist-module
+            - ldap-module
             - wallet-module
+            - tickets-module
           detail-type:
             - artist.profile.created
             - artist.registration
@@ -707,6 +709,7 @@ resources:
           source:
             - artist-module
             - tickets-module
+            - wallet-module
           detail-type:
             - recital.created
             - recital.updated
@@ -782,11 +785,14 @@ resources:
         Name: TicketTopicEventBridgeRule
         EventPattern:
           source:
+            - artist-module
             - tickets-module
             - wallet-module
+            - blockchain-module
           detail-type:
             - ticket.purchase
             - ticket.repurchase
+            - ticket.reimburse
         Targets:
           - Arn:
               Fn::GetAtt: [TicketTopicLambdaFunction, Arn]
@@ -858,6 +864,7 @@ resources:
         Name: WalletTopicEventBridgeRule
         EventPattern:
           source:
+            - artist-module
             - wallet-module
             - blockchain-module
             - tickets-module
