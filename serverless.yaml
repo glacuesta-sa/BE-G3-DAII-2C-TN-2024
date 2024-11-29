@@ -579,10 +579,6 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: artist-topic
-        DeliveryPolicy:
-          http:
-            defaultRequestPolicy:
-              headerContentType: "application/json"
 
     ArtistTopicPolicy:
       Type: AWS::SNS::TopicPolicy
@@ -661,10 +657,6 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: recital-topic
-        DeliveryPolicy:
-          http:
-            defaultRequestPolicy:
-              headerContentType: "application/json"
 
     RecitalTopicPolicy:
       Type: AWS::SNS::TopicPolicy
@@ -743,10 +735,6 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: ticket-topic
-        DeliveryPolicy:
-          http:
-            defaultRequestPolicy:
-              headerContentType: "application/json"
 
     TicketTopicPolicy:
       Type: AWS::SNS::TopicPolicy
@@ -826,10 +814,6 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: wallet-topic
-        DeliveryPolicy:
-          http:
-            defaultRequestPolicy:
-              headerContentType: "application/json"
 
     WalletPolicy:
       Type: AWS::SNS::TopicPolicy
